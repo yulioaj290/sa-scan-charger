@@ -1,0 +1,41 @@
+<resources>
+    <string name="title_activity_settings">Ajustes</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_show_introduction">Mostrar introducción</string>
+    <string name="pref_desc_show_introduction">Mostrar introducción al iniciar la aplicación</string>
+
+    <string name="pref_title_error_margin">Margen de error</string>
+    <string-array name="pref_list_error_margin">
+        <item>Sin margen de error</item>
+        <item>1 Dígito</item>
+        <item>2 Dígitos</item>
+        <item>4 Dígitos</item>
+    </string-array>
+    <string-array name="pref_values_error_margin">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+    </string-array>
+
+    <string name="pref_title_delay_autofocus">Reiniciar autoenfoque</string>
+    <string-array name="pref_list_delay_autofocus">
+        <item>3 segundos</item>
+        <item>4 segundos</item>
+        <item>5 segundos</item>
+        <item>6 segundos</item>
+        <item>7 segundos</item>
+    </string-array>
+    <string-array name="pref_values_delay_autofocus">
+        <item>3000</item>
+        <item>4000</item>
+        <item>5000</item>
+        <item>6000</item>
+        <item>7000</item>
+    </string-array>
+</resources>

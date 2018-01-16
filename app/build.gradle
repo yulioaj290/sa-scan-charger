@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "23.0.0 rc2"
+    defaultConfig {
+        // Enabling multidex support for loading libraries several times
+        multiDexEnabled true
+        applicationId "com.surfacesoft.yaj.sascancharger"
+        minSdkVersion 9
+        targetSdkVersion 22
+    }
+    buildTypes {
+    }
+    productFlavors {
+        SAScanCharger {
+            versionCode 1
+            versionName '1.0'
+            minSdkVersion 9
+            applicationId 'com.surfacesoft.yaj.sascancharger'
+            targetSdkVersion 22
+        }
+    }
+
+//    Para excluir elementos de librerias externas empaquetadas en *.jar,
+//    util cuando hay errorres de duplicacion de librerias
+//
+//    packagingOptions {
+////        exclude 'libs/JJIL-12-22-08.jar'
+////        exclude 'libs/JJIL-Android-12-22-08.jar'
+//        exclude 'build.xml'
+//        exclude '.classpath'
+//        exclude '.project'
+//
+//        exclude 'nbproject/project.xml'
+//        exclude 'nbproject/build-impl.xml'
+//        exclude 'nbproject/project.properties'
+//        exclude 'nbproject/genfiles.properties'
+//
+//        exclude 'nbproject/private/private.xml'
+//        exclude 'nbproject/private/private.properties'
+//        exclude 'META-INF/MANIFEST.MF'
+//    }
+}
+
+dependencies {
+//    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':tesstwo')
+    compile project(':appintro')
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:support-v4:22.2.0'
+}
