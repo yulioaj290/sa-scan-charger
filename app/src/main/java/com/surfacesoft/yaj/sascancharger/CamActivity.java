@@ -261,7 +261,7 @@ public class CamActivity extends Activity {
             menu.setLayoutParams(rlParams);
             menu.requestLayout();
         }
-        hideMenu = hideMenu ? false : true;
+        hideMenu = !hideMenu;
 
         ImageButton btnMenu = (ImageButton) findViewById(R.id.btnMenu);
         btnMenu.setVisibility(btnMenu.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
@@ -271,13 +271,8 @@ public class CamActivity extends Activity {
         //menu.setVisibility(menu.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
 
         hideToggleViewFinder(v);
-        btnCapture.setEnabled(isBtnCaptureEnabled ? false : true);
-        isBtnCaptureEnabled = isBtnCaptureEnabled ? false : true;
-    }
-
-    public void launchActivate(View v) {
-        hideToggleMenu(v);
-        CamActivity.this.startActivityForResult(new Intent(CamActivity.this, Activate.class), CODIGO_ACTIVAR);
+        btnCapture.setEnabled(!isBtnCaptureEnabled);
+        isBtnCaptureEnabled = !isBtnCaptureEnabled;
     }
 
     public void launchSetting(View v) {
@@ -307,7 +302,7 @@ public class CamActivity extends Activity {
         }
         if (!prefs.contains("pref_first_time") || !prefs.contains("pref_error_margin")
                 || !prefs.contains("pref_delay_autofocus") || !prefs.contains("pref_show_introduction")) {
-            editor.commit();
+            editor.apply();
         }
     }
 
@@ -321,7 +316,7 @@ public class CamActivity extends Activity {
             if (firstTime) {
                 editor.putBoolean("pref_first_time", false);
                 editor.putBoolean("pref_show_introduction", false);
-                editor.commit();
+                editor.apply();
             }
             //  show the App Intro
             Intent appIntro = new Intent(CamActivity.this, Intro.class);
@@ -366,7 +361,7 @@ public class CamActivity extends Activity {
             File dir = new File(path);
             if (!dir.exists()) {
                 if (!dir.mkdirs()) {
-                    Toast.makeText(this, "Error al crear directorio \"tessdata\" en la SDCard", Toast.LENGTH_SHORT);
+                    Toast.makeText(this, "Error al crear directorio \"tessdata\" en la SDCard", Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
@@ -394,7 +389,7 @@ public class CamActivity extends Activity {
                 out.close();
 
             } catch (IOException e) {
-                Toast.makeText(this, "No se pudo copiar el archivo de idioma al directorio \"tessdata\"", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "No se pudo copiar el archivo de idioma al directorio \"tessdata\"", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -666,24 +661,14 @@ public class CamActivity extends Activity {
         //  Executing the USSD code
         String chargeCode = editChargeCode.getText().toString().trim().replaceAll("\\s", "");
 
-        // Codigo de activacion en BD
-        String codBD = TelephonData.getCodigoActivacionFromDB(dbH);
-        // Codigo de activacion generado por el telefono
-        String codGen = TelephonData.getCodigoActivacion(dbH);
-
-        if (!codBD.equals("") && codBD.equals(codGen)) {
-            if (chargeCode.length() != 16) {
-                Toast.makeText(getApplicationContext(), "C\u00f3digo incorrecto.", Toast.LENGTH_SHORT).show();
-            } else {
-                String encodedNumSimbol = Uri.encode("#");
-                String ussd = "*" + "662" + "*" + chargeCode + encodedNumSimbol;
-                startActivity(new Intent("android.intent.action.CALL", Uri.parse("tel:" + ussd)));
-                this.closeView(v);
-            }
+        if (chargeCode.length() != 16) {
+            Toast.makeText(getApplicationContext(), "C\u00f3digo incorrecto.", Toast.LENGTH_SHORT).show();
         } else {
-            CamActivity.this.startActivityForResult(new Intent(CamActivity.this, Activate.class), CODIGO_ACTIVAR);
+            String encodedNumSimbol = Uri.encode("#");
+            String ussd = "*" + "662" + "*" + chargeCode + encodedNumSimbol;
+            startActivity(new Intent("android.intent.action.CALL", Uri.parse("tel:" + ussd)));
+            this.closeView(v);
         }
-
     }
 
     class ProgressSpinnerTask extends AsyncTask<String, Integer, Boolean> {

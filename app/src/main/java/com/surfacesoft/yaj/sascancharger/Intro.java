@@ -1,19 +1,19 @@
 package com.surfacesoft.yaj.sascancharger;
 
-import android.graphics.Color;
 import android.os.Bundle;
+import androidx.annotation.Nullable;
 
 import com.github.paolorotolo.appintro.AppIntro;
-import com.github.paolorotolo.appintro.AppIntro2;
 
 /**
  * Created by yulio on 26/09/2015.
  */
-public class Intro extends AppIntro2 {
+public class Intro extends AppIntro {
 
     // Please DO NOT override onCreate. Use init
     @Override
-    public void init(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         // Add your slide's fragments here
         // AppIntro will automatically generate the dots indicator and buttons.
@@ -54,6 +54,11 @@ public class Intro extends AppIntro2 {
     @Override
     public void onDonePressed() {
         // Do something when users tap on Done button.
+        this.finish();
+    }
+
+    @Override
+    public void onSkipPressed() {
         this.finish();
     }
 }

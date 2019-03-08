@@ -1,24 +1,27 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "23.0.0 rc2"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
     defaultConfig {
         // Enabling multidex support for loading libraries several times
         multiDexEnabled true
         applicationId "com.surfacesoft.yaj.sascancharger"
-        minSdkVersion 9
-        targetSdkVersion 22
+        minSdkVersion 14
+        targetSdkVersion 28
     }
     buildTypes {
     }
+
+    flavorDimensions "default"
     productFlavors {
         SAScanCharger {
+//            dimension ''
             versionCode 1
             versionName '1.0'
-            minSdkVersion 9
+            minSdkVersion 14
             applicationId 'com.surfacesoft.yaj.sascancharger'
-            targetSdkVersion 22
+            targetSdkVersion 28
         }
     }
 
@@ -45,8 +48,10 @@ android {
 
 dependencies {
 //    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':tesstwo')
-    compile project(':appintro')
-    compile 'com.android.support:appcompat-v7:22.2.0'
-    compile 'com.android.support:support-v4:22.2.0'
+    implementation project(':tesstwo')
+    implementation 'com.github.AppIntro:AppIntro:v5.1.0'
+//    implementation 'com.github.apl-devs:appintro:v4.2.3'
+    implementation "com.google.android.material:material:1.1.0-alpha03"
+//    implementation 'com.android.support:appcompat-v7:28.0.0'
+//    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
 }

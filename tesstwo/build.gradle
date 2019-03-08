@@ -1,14 +1,14 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "23.0.0 rc2"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         // Enabling multidex support.
         multiDexEnabled true
         minSdkVersion 8
-        targetSdkVersion 22
+        targetSdkVersion 28
     }
 
     buildTypes {

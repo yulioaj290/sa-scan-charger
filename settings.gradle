@@ -1,3 +1,2 @@
 include ':tesstwo'
-include ':appintro'
 include ':app'

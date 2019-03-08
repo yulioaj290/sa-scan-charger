@@ -22,7 +22,8 @@
         android:layout_marginTop="3dp"
         android:background="@android:color/transparent"
         android:onClick="closeWindows"
-        android:src="@mipmap/ic_chevron_left_white_48dp" />
+        android:src="@mipmap/ic_chevron_left_white_48dp"
+        android:contentDescription="@string/btnBack" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -74,7 +75,8 @@
                     android:text="@string/about_email"
                     android:textColor="@color/color_black"
                     android:onClick="contacting"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginEnd="5dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -84,7 +86,8 @@
                     android:autoLink="email"
                     android:textColor="@color/color_blue"
                     android:onClick="contacting"
-                    android:textStyle="italic" />
+                    android:textStyle="italic"
+                    android:layout_marginEnd="5dp" />
             </LinearLayout>
 
             <TextView
@@ -96,7 +99,8 @@
                 android:textColor="@color/color_black"
                 android:text="@string/about_rights"
                 android:textSize="12sp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:layout_marginEnd="5dp" />
 
         </LinearLayout>
     </ScrollView>
